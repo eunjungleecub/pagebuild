@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class='container'>
+
+    <ul>
+    {% for post in posts_list %}
+    <a href="{% url 'post_detail' post.pk %}">
+    <p>{{ post.title }}</p>
+    <p>{{ post.author }}</p>
+    <p>{{ post.content }}</p>
+    </a>
+    {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock %}
