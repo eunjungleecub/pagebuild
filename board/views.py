@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
-from .models import Post
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.utils import timezone
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import Post
 
 #forms
 from .forms import PostForm
-from .models import Post
 
 #pagination
 from django.core.paginator import Paginator
@@ -32,14 +33,14 @@ class PostDetailView(DetailView):
 class PostUpdateView(UpdateView):
     model = Post
     form_class = PostForm
-    template_name = 'board/updatepost.html'
+    template_name = 'board/createpost.html'
 
     def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self})
+        return reverse('post_detail', kwargs={'pk': self.pk})
 
 class PostDeleteView(DeleteView):
     model = Post
-    template_name = 'board/deleteview.html'
+    template_name = 'board/deletepost.html'
     success_url = reverse_lazy('posts')
 
 
